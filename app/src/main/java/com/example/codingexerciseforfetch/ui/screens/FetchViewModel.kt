@@ -7,9 +7,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.codingexerciseforfetch.network.FetchApi
 import kotlinx.coroutines.launch
+import java.io.IOException
+
+sealed interface FetchUiState {
+    data class Success(val items: String) : FetchUiState
+    object Error : FetchUiState
+    object Loading : FetchUiState
+}
 
 class FetchViewModel: ViewModel() {
-    var fetchUiState: String by mutableStateOf("")
+    var fetchUiState: FetchUiState by mutableStateOf(FetchUiState.Loading)
         private set
 
     init{
@@ -18,8 +25,12 @@ class FetchViewModel: ViewModel() {
 
     private fun getFetchItems() {
         viewModelScope.launch{
-            val listResult = FetchApi.retrofitService.getItems()
-            fetchUiState = listResult
+            try {
+                val listResult = FetchApi.retrofitService.getItems()
+                fetchUiState = FetchUiState.Success(listResult)
+            } catch (e: IOException) {
+                FetchUiState.Error
+            }
         }
     }
 }
