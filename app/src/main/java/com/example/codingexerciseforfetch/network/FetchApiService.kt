@@ -10,11 +10,11 @@ import retrofit2.http.GET
 
 private const val BASE_URL =
     "https://fetch-hiring.s3.amazonaws.com"
-//"https://android-kotlin-fun-mars-server.appspot.com"
 
+private val json = Json { ignoreUnknownKeys = true }
 
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+    .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
     .baseUrl(BASE_URL)
     .build()
 

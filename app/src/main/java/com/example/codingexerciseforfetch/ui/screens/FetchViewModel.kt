@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.codingexerciseforfetch.data.NetworkFetchItemRepository
 import com.example.codingexerciseforfetch.network.FetchApi
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -26,7 +27,8 @@ class FetchViewModel: ViewModel() {
     private fun getFetchItems() {
         viewModelScope.launch{
             try {
-                val listResult = FetchApi.retrofitService.getItems()
+                val fetchItemRepository = NetworkFetchItemRepository()
+                val listResult = fetchItemRepository.getFetchItems()
                 fetchUiState = FetchUiState.Success(
                     "Success: ${listResult.size} Mars photos retrieved"
                 )
