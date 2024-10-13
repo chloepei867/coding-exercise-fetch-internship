@@ -1,6 +1,5 @@
-package com.example.codingexerciseforfetch.network
+package com.example.codingexerciseforfetch.model
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable

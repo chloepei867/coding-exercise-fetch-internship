@@ -6,12 +6,12 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.codingexerciseforfetch.data.NetworkFetchItemRepository
-import com.example.codingexerciseforfetch.network.FetchApi
+import com.example.codingexerciseforfetch.model.FetchItem
 import kotlinx.coroutines.launch
 import java.io.IOException
 
 sealed interface FetchUiState {
-    data class Success(val items: String) : FetchUiState
+    data class Success(val items: List<FetchItem>) : FetchUiState
     object Error : FetchUiState
     object Loading : FetchUiState
 }
@@ -29,8 +29,14 @@ class FetchViewModel: ViewModel() {
             try {
                 val fetchItemRepository = NetworkFetchItemRepository()
                 val listResult = fetchItemRepository.getFetchItems()
+                val finalResult = listResult
+                    //filter out null or blank names
+                    .filter{!it.name.isNullOrBlank()}
+                    //sort by listId and name
+                    .sortedWith(compareBy({it.listId}, {it.name}))
+                    .groupBy { it.listId }
                 fetchUiState = FetchUiState.Success(
-                    "Success: ${listResult.size} Mars photos retrieved"
+                    listResult
                 )
             } catch (e: IOException) {
                 FetchUiState.Error

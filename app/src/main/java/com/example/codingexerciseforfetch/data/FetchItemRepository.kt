@@ -1,7 +1,7 @@
 package com.example.codingexerciseforfetch.data
 
 import com.example.codingexerciseforfetch.network.FetchApi
-import com.example.codingexerciseforfetch.network.FetchItem
+import com.example.codingexerciseforfetch.model.FetchItem
 
 interface FetchItemRepository {
     suspend fun getFetchItems(): List<FetchItem>

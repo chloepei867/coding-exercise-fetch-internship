@@ -21,10 +21,10 @@ import androidx.compose.ui.Modifier
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FetchApp() {
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+//    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold (
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {FetchTopAppBar(scrollBehavior = scrollBehavior)}
+//        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar =  @androidx.compose.runtime.Composable {FetchTopAppBar()}
     ){
         val fetchViewModel: FetchViewModel = viewModel()
         HomeScreen(
@@ -36,15 +36,15 @@ fun FetchApp() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FetchTopAppBar(scrollBehavior: TopAppBarScrollBehavior, modifier: Modifier = Modifier) {
+fun FetchTopAppBar() {
     CenterAlignedTopAppBar(
-        scrollBehavior = scrollBehavior,
+//        scrollBehavior = scrollBehavior,
         title = {
             Text(
                 text = stringResource(R.string.app_name),
                 style = MaterialTheme.typography.headlineSmall,
             )
         },
-        modifier = modifier
+//        modifier = modifier
     )
 }
