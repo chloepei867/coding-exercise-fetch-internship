@@ -94,7 +94,8 @@ fun ResultScreen(
     val groupedItems = items
 //        filter out null or blank names
         .filter{!it.name.isNullOrBlank()}
-        .sortedWith(compareBy({it.listId}, {it.name}))
+        //sort by listId and number in name
+        .sortedWith(compareBy({it.listId}, { extractNumberFromName(it.name) }))
         .groupBy { it.listId }
 
     // Display the grouped items in a LazyColumn
@@ -131,6 +132,14 @@ fun ResultScreen(
         }
     }
 
+}
+
+//return the number in name
+fun extractNumberFromName(name: String?): Int {
+    if (name.isNullOrBlank()) return -1;
+    val regex = "\\d+".toRegex()
+    val res = regex.find(name)
+    return res?.value?.toIntOrNull() ?: -1
 }
 
 @Composable

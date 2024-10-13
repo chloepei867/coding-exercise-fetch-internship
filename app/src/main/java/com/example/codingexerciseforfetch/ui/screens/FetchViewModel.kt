@@ -29,12 +29,12 @@ class FetchViewModel: ViewModel() {
             try {
                 val fetchItemRepository = NetworkFetchItemRepository()
                 val listResult = fetchItemRepository.getFetchItems()
-                val finalResult = listResult
-                    //filter out null or blank names
-                    .filter{!it.name.isNullOrBlank()}
-                    //sort by listId and name
-                    .sortedWith(compareBy({it.listId}, {it.name}))
-                    .groupBy { it.listId }
+//                val finalResult = listResult
+//                    //filter out null or blank names
+//                    .filter{!it.name.isNullOrBlank()}
+//                    //sort by listId and name
+//                    .sortedWith(compareBy({it.listId}, {it.name}))
+//                    .groupBy { it.listId }
                 fetchUiState = FetchUiState.Success(
                     listResult
                 )
