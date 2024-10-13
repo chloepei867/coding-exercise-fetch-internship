@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.codingexerciseforfetch.R
 import com.example.codingexerciseforfetch.ui.theme.CodingExerciseForFetchTheme
+
 
 @Composable
 fun HomeScreen(
@@ -39,11 +41,21 @@ fun HomeScreen(
 
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {
-    Image (
-        modifier = modifier.size(200.dp),
-        painter = painterResource(R.drawable.loading_img),
-        contentDescription = stringResource(R.string.loading)
-    )
+//    Image (
+//        modifier = modifier.size(200.dp),
+//        painter = painterResource(R.drawable.loading_img),
+//        contentDescription = stringResource(R.string.loading)
+//    )
+    Box(
+        modifier = modifier.fillMaxWidth().fillMaxHeight(), // 填充整个可用空间
+        contentAlignment = Alignment.Center // 居中对齐内容
+    ) {
+        Image(
+            modifier = Modifier.size(200.dp), // 图像大小
+            painter = painterResource(R.drawable.loading_img),
+            contentDescription = stringResource(R.string.loading)
+        )
+    }
 
 }
 
@@ -68,7 +80,7 @@ fun ResultScreen(
     modifier: Modifier = Modifier ) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = modifier
+        modifier = modifier.fillMaxWidth().fillMaxHeight(),
     ) {
         Text(text = items)
     }
@@ -81,3 +93,4 @@ fun ResultScreenPreview() {
         ResultScreen("placeholder")
     }
 }
+

@@ -1,5 +1,23 @@
 package com.example.codingexerciseforfetch.network
 
-class FetchItem {
-    
-}
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class FetchItem(
+    val id: Int,
+    val listId: Int,
+    val name: String?
+)
+
+
+
+///**
+// * This data class defines a Mars photo which includes an ID, and the image URL.
+// */
+//@Serializable
+//data class FetchItem(
+//    val id: String,
+//    @SerialName(value = "img_src")
+//    val imgSrc: String
+//)

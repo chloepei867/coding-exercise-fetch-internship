@@ -12,8 +12,8 @@ import com.example.codingexerciseforfetch.ui.theme.CodingExerciseForFetchTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
         setContent {
             CodingExerciseForFetchTheme {
                 Surface(

@@ -27,7 +27,9 @@ class FetchViewModel: ViewModel() {
         viewModelScope.launch{
             try {
                 val listResult = FetchApi.retrofitService.getItems()
-                fetchUiState = FetchUiState.Success(listResult)
+                fetchUiState = FetchUiState.Success(
+                    "Success: ${listResult.size} Mars photos retrieved"
+                )
             } catch (e: IOException) {
                 FetchUiState.Error
             }
