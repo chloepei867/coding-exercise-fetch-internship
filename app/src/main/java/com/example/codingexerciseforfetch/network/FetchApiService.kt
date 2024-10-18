@@ -14,6 +14,7 @@ private const val BASE_URL =
 
 private val json = Json { ignoreUnknownKeys = true }
 
+//retrofit builder: to build and create a Retrofit object.
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
     .baseUrl(BASE_URL)

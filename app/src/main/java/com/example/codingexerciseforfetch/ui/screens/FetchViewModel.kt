@@ -39,7 +39,7 @@ class FetchViewModel: ViewModel() {
                     listResult
                 )
             } catch (e: IOException) {
-                FetchUiState.Error
+                fetchUiState = FetchUiState.Error
             }
         }
     }

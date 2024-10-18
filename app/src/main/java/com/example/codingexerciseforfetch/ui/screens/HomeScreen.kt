@@ -63,9 +63,14 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center
     ) {
         Image(
-            modifier = Modifier.size(200.dp),
+            modifier = Modifier
+                .size(200.dp),
+//                .padding(bottom=80.dp),
             painter = painterResource(R.drawable.loading_img),
             contentDescription = stringResource(R.string.loading)
+        )
+        Text(
+            text = stringResource(R.string.loading)
         )
     }
 
@@ -131,7 +136,6 @@ fun ResultScreen(
             }
         }
     }
-
 }
 
 //return the number in name
@@ -151,9 +155,9 @@ fun ItemRow(item: FetchItem) {
 //        elevation = 4
     ) {
         Text(
-            text = "ID: ${item.id}, listId: ${item.listId}, Name: ${item.name}",
+            text = "ID: ${item.id}, Name: ${item.name}",
                         modifier = Modifier.padding(8.dp),
-            //            style = MaterialTheme.typography.body1
+                        style = MaterialTheme.typography.bodyLarge
         )
     })
 }
